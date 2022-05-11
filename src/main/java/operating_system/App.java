@@ -17,7 +17,7 @@ public class App
             int quantum, rafaga;
             System.out.println("Ingrese el tiempo de CPU del proceso:");
             rafaga = scanner.nextInt();
-            System.out.println("Ingrese el el quantum del proceso en milisegundos");
+            System.out.println("Ingrese el el quantum del proceso en mili5segundos");
             quantum = scanner.nextInt();
             Proceso p = new Proceso(i, rafaga, quantum, cantidad);
             listaProcesos.add(p);
@@ -29,4 +29,3 @@ public class App
 
     }
 }
-

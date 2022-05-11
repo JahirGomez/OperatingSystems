@@ -36,7 +36,7 @@ public class Proceso extends Thread {
                 //this.dormir((Proceso.getN()-1)*quantum);
             }else{
                 if (resto>0 && quantum !=0){
-                    //System.out.println(this);
+                    System.out.println(this);
                     while (resto>0){
                         this.resto--;
                         if (resto==0){
