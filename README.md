@@ -1,2 +1,0 @@
-# OperatingSystems
-Just another project. ;)
