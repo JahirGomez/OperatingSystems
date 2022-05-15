@@ -61,9 +61,7 @@ public class Proceso extends Thread {
                     }else{
                         System.out.println(this.getName() + " En espera");
                         this.estado="En espera";
-                        /*if (a-1<n){
-                            lock.notifyAll();
-                        }*/
+                        System.out.println(this.getEstado() + "64");
                         try {
                             lock.wait();
                         } catch (InterruptedException e) {
@@ -81,7 +79,6 @@ public class Proceso extends Thread {
                         this.estado = "Finalizado";
                         System.out.println(this);
                         Proceso.setN(n-1);
-                        lock.notifyAll();
                         this.stop();
                         //this.dormir((Proceso.getN()-1)*quantum);
                     }else{

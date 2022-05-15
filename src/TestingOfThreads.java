@@ -73,8 +73,8 @@ public class TestingOfThreads {
                     contador++;
                 }else{
                     for (int i=0; i<listaProcesos.size(); i++){
-                    
                         if (i==0){
+                            System.out.println(((Proceso)listaProcesos.get(listaProcesos.size()-1)).getEstado() + "77" + ((Proceso)listaProcesos.get(listaProcesos.size()-1)).getName());
                             if (((Proceso)listaProcesos.get(listaProcesos.size()-1)).getEstado().equals("En espera")) {
                                 System.out.println("consumiendo proceso " + i);
                                 System.out.println("Ingresando a P" + i);
