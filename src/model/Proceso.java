@@ -13,9 +13,9 @@ public class Proceso extends Thread {
     }
 
     @Override
-    public void run (){
+    public void run() {
         while (!this.estado.equals("Finalizado")){
-            if (resto>0 && resto>quantum){
+            if (resto>0 && resto>=quantum){
                 System.out.println(this);
                 for (int j=0; j<quantum; j++){
                     this.resto--;
@@ -28,30 +28,26 @@ public class Proceso extends Thread {
                     this.estado = "Finalizado";
                     System.out.println(this);
                     Proceso.setN(n-1);
+                    /*try {
+                        this.produce();
+                    }catch (InterruptedException e) {
+                        System.out.println("Error de" + this.getName() + " en " + e);
+                    }*/
                     this.stop();
                 }else{
-                    this.estado = "En espera";
-                    System.out.println(this.getName() + " " +this.estado);
+                    System.out.println(this.getName() + " En espera");
                 }
                 //this.dormir((Proceso.getN()-1)*quantum);
             }else{
-                if (resto>0 && quantum !=0){
+                if (resto>0 && quantum>resto){
                     System.out.println(this);
                     while (resto>0){
                         this.resto--;
-                        if (resto==0){
-                            break;
-                        }
                     }
-                    if (resto == 0 && quantum !=0){
-                        this.estado = "Finalizado";
-                        System.out.println(this);
-                        Proceso.setN(n-1);
-                        this.stop();
-                    }else{
-                        this.estado = "En espera";
-                        System.out.println(this.getName() + " " +this.estado);
-                    }
+                    this.estado = "Finalizado";
+                    System.out.println(this);
+                    Proceso.setN(n-1);
+                    this.stop();
                     //this.dormir((Proceso.getN()-1)*quantum);
                 }else{
                     if (resto == 0 && quantum !=0){
@@ -62,8 +58,13 @@ public class Proceso extends Thread {
                     }
                 }
             }
-            this.dormir((Proceso.getN()-1)*quantum);
-        }
+            try {
+                this.produce();
+            }catch (InterruptedException e) {
+                System.out.println("Error de" + this.getName() + " en " + e);
+            }
+            //this.dormir((Proceso.getN()-1)*quantum);
+        }    
     }
 
 
@@ -76,24 +77,39 @@ public class Proceso extends Thread {
         }
     }
 
-    public void dormir(int a){
+    /*public void dormir(int a) {
         try{
             this.sleep(a);
         }catch (InterruptedException e){
             System.out.println("Error de" + this.getName() + " en " + e);
         }
-    }
+    }*/
 
-    public static void setN (int a){
+    public static void setN(int a) {
         n = a;
     }
 
-    public static int getN (){
+    public static int getN() {
         return n;
     }
 
-    public String getEstado (){
+    public String getEstado() {
         return this.estado;
+    }
+
+    public void produce() throws InterruptedException {
+        synchronized (this) {
+            //System.out.println("Entrando a producir en " + this.getName());
+            this.estado="En espera";
+            wait();
+        }
+    }
+
+    public void consume() throws InterruptedException {
+        synchronized (this) {
+            //System.out.println("Entrando a consumir en " + this.getName());
+            notify();
+        }
     }
 
 }
