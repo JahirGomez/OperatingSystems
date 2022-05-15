@@ -26,7 +26,7 @@ public abstract class Lista {
     public abstract void insertaInicio(String nombre, int r, int quantum);
     public abstract void insertaFinal(String nombre, int r, int quantum);
     public abstract Object eliminaInicio();
-    public abstract Object eliminaFinal();   
+    public abstract Object eliminaFinal();
 
     /**
      * @return the inicio

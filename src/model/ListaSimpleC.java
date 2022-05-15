@@ -80,6 +80,85 @@ public class ListaSimpleC extends ListaCirc{
     public void insertaOrdenado(int dato){
     
     }
+
+    @Override
+    public void recorrer() {
+        Nodo actual = inicio;
+        if (!vacio()){
+            if (inicio == ultimo){
+                if (!actual.getEstado().equals("Finalizado")){
+                    actual.setEstado("En ejecucion");
+                    System.out.println(actual);
+                    while(actual.estado.equals("En ejecucion")) {
+                        if(actual.getResto() > 0 && actual.getResto() >= Nodo.getQuantum()) {
+                            for (int i=0; i<Nodo.getQuantum(); i++){
+                                actual.setResto(actual.getResto()-1);
+                            }
+
+                            if(actual.resto == 0) {
+                                actual.setEstado("Finalizado");
+                                System.out.println(actual);
+                                Nodo.setContadorProcesoFinalizados();
+                            }else{
+                                actual.setEstado("En espera");
+                                System.out.println(actual.getName() + " " + actual.getEstado());
+                            }
+                        }else{
+                            if(actual.getResto() > 0 && actual.getResto() < Nodo.getQuantum()) {
+                                for (int i=0; i<Nodo.getQuantum(); i++){
+                                    actual.setResto(actual.getResto()-1);
+                                    if(actual.getResto() == 0){
+                                        actual.setEstado("Finalizado");
+                                        System.out.println(actual);
+                                        break;
+                                    }
+
+                                }
+                                Nodo.setContadorProcesoFinalizados();
+                            }
+                        }
+                    }
+                }
+            }else{
+                if (!actual.getEstado().equals("Finalizado")){
+                    do{
+                        actual.setEstado("En ejecucion");
+                        System.out.println(actual);
+                        while(actual.estado.equals("En ejecucion")) {
+                            if(actual.getResto() > 0 && actual.getResto() >= Nodo.getQuantum()) {
+                                for (int i=0; i<Nodo.getQuantum(); i++){
+                                    actual.setResto(actual.getResto()-1);
+                                }
+    
+                                if(actual.resto == 0) {
+                                    actual.setEstado("Finalizado");
+                                    System.out.println(actual);
+                                    Nodo.setContadorProcesoFinalizados();
+                                }else{
+                                    actual.setEstado("En espera");
+                                    System.out.println(actual.getName() + " " + actual.getEstado());
+                                }
+                            }else{
+                                if(actual.getResto() > 0 && actual.getResto() < Nodo.getQuantum()) {
+                                    for (int i=0; i<Nodo.getQuantum(); i++){
+                                        actual.setResto(actual.getResto()-1);
+                                        if(actual.getResto() == 0){
+                                            actual.setEstado("Finalizado");
+                                            System.out.println(actual);
+                                            break;
+                                        }
+    
+                                    }
+                                    Nodo.setContadorProcesoFinalizados();
+                                }
+                            }
+                        }
+                        actual = actual.getSiguiente();
+                    }while(actual!=inicio);
+                }
+            }
+        }
+    }
     
     /*public static void main(String[] args) {
         ListaSimpleC listac = new ListaSimpleC();

@@ -10,7 +10,7 @@ package model;
  * @author Jahir Gómez
  */
 public class Nodo {
-    private static int quantum;
+    private static int quantum, contadorProcesoFinalizados=0;
     protected int rafaga, resto;
     protected String name, estado="Listo";
     protected Nodo siguiente;
@@ -19,15 +19,15 @@ public class Nodo {
     
     public Nodo(String name, int raf, int q){
         this.name = name;
-        this.rafaga = raf;
-        this.resto = this.rafaga = q;
+        this.resto = this.rafaga = raf;
+        this.quantum = q;
         siguiente = null;
     }
     
     public Nodo(String name, int raf, int q, Nodo siguiente){
         this.name = name;
         this.resto = this.rafaga = raf;
-        this.quantum = q;
+        Nodo.quantum = q;
         this.siguiente = siguiente;
     }
 
@@ -84,6 +84,14 @@ public class Nodo {
         }else{
             return this.getName() +  "Finalizado";
         }
+    }
+
+    public static void setContadorProcesoFinalizados() {
+        Nodo.contadorProcesoFinalizados++;
+    }
+
+    public static int getContadorProcesosFinalizados() {
+        return contadorProcesoFinalizados;
     }
 
 }
