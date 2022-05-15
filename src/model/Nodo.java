@@ -12,7 +12,7 @@ package model;
 public class Nodo {
     private static int quantum;
     protected int rafaga, resto;
-    protected String name, estado;
+    protected String name, estado="Listo";
     protected Nodo siguiente;
     
     public Nodo(){}
@@ -72,8 +72,18 @@ public class Nodo {
         this.siguiente = siguiente;
     }
 
-    public int getQuantum() {
+    public static int getQuantum() {
         return Nodo.quantum;
     }
     
+
+    @Override
+    public String toString() {
+        if(!this.estado.equals("Finalizado")) {
+            return "Ejecutando " +this.getName();
+        }else{
+            return this.getName() +  "Finalizado";
+        }
+    }
+
 }
