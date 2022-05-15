@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-import javax.xml.catalog.Catalog;
+import javax.swing.event.SwingPropertyChangeSupport;
 
 import model.Proceso;
 import java.util.ArrayList;
@@ -37,12 +37,8 @@ public class TestingOfThreads {
                 }
 
                 while(((Proceso)listaProcesos.get(0)).getEstado().equals("En espera")){
-                    try {
-                        ((Proceso)listaProcesos.get(0)).consume();
-                    } catch (InterruptedException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
+                    System.out.println("Ingresando a P0");
+                    ((Proceso)listaProcesos.get(0)).lock.notifyAll();
                 }
 
                 if (((Proceso)listaProcesos.get(0)).getEstado().equals("Finalizado")){
@@ -62,7 +58,6 @@ public class TestingOfThreads {
                             do{
                                 if (((Proceso)listaProcesos.get(i-1)).getEstado().equals("En espera")) {
                                 System.out.println("Iniciando proceso " + i);
-                                
                                 ((Proceso)listaProcesos.get(i)).start();
                                 ver = false;
                                 }
@@ -74,14 +69,6 @@ public class TestingOfThreads {
                                 break;
                             }
                         }
-                    
-                        //System.out.println("consumiendo proceso " + i);
-                    
-                        /*try {
-                            ((Proceso)listaProcesos.get(i)).consume();
-                        } catch (InterruptedException e) {
-                            System.out.println("Error de" + ((Proceso)listaProcesos.get(i)).getName() + " en " + e);
-                        }*/
                     }
                     contador++;
                 }else{
@@ -89,24 +76,16 @@ public class TestingOfThreads {
                     
                         if (i==0){
                             if (((Proceso)listaProcesos.get(listaProcesos.size()-1)).getEstado().equals("En espera")) {
-                                //System.out.println("consumiendo proceso " + i);
-                            
-                                try {
-                                    ((Proceso)listaProcesos.get(i)).consume();
-                                } catch (InterruptedException e) {
-                                    System.out.println("Error de" + ((Proceso)listaProcesos.get(i)).getName() + " en " + e);
-                                }
+                                System.out.println("consumiendo proceso " + i);
+                                System.out.println("Ingresando a P" + i);
+                                ((Proceso)listaProcesos.get(i)).lock.notifyAll();
                             }
                         }else{
                             boolean ver = true;
                             do{
                                 if (((Proceso)listaProcesos.get(i-1)).getEstado().equals("En espera")) {
-                                    //System.out.println("consumiendo proceso " + i);
-                                    try {
-                                        ((Proceso)listaProcesos.get(i)).consume();
-                                    } catch (InterruptedException e) {
-                                        System.out.println("Error de" + ((Proceso)listaProcesos.get(i)).getName() + " en " + e);
-                                    }
+                                    System.out.println("Ingresando a P" + i);
+                                    ((Proceso)listaProcesos.get(i)).lock.notifyAll();
                                 ver = false;
                                 }
                             }while (ver);
