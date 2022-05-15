@@ -10,8 +10,8 @@ package model;
  * @author Jahir Gómez
  */
 public class Nodo {
-    private static int rafaga;
-    protected int quantum, resto;
+    private static int quantum;
+    protected int rafaga, resto;
     protected String name, estado;
     protected Nodo siguiente;
     
@@ -20,44 +20,60 @@ public class Nodo {
     public Nodo(String name, int raf, int q){
         this.name = name;
         this.rafaga = raf;
-        this.resto = this.quantum = q;
+        this.resto = this.rafaga = q;
         siguiente = null;
     }
     
-    public Nodo(String name, Nodo siguiente){
+    public Nodo(String name, int raf, int q, Nodo siguiente){
         this.name = name;
+        this.resto = this.rafaga = raf;
+        this.quantum = q;
         this.siguiente = siguiente;
     }
 
-    /**
-     * @return the name
-     */
-    public Object getname() {
-        return name;
+
+    public int getRafaga() {
+        return this.rafaga;
     }
 
-    /**
-     * @param name the name to set
-     */
-    public void setname(String name) {
+    public void setRafaga(int rafaga) {
+        this.rafaga = rafaga;
+    }
+
+    public int getResto() {
+        return this.resto;
+    }
+
+    public void setResto(int resto) {
+        this.resto = resto;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
         this.name = name;
     }
 
-    /**
-     * @return the siguiente
-     */
-    public Nodo getSiguiente() {
-        return siguiente;
+    public String getEstado() {
+        return this.estado;
     }
 
-    /**
-     * @param siguiente the siguiente to set
-     */
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public Nodo getSiguiente() {
+        return this.siguiente;
+    }
+
     public void setSiguiente(Nodo siguiente) {
         this.siguiente = siguiente;
     }
-    
-    
-    
+
+    public int getQuantum() {
+        return Nodo.quantum;
+    }
     
 }

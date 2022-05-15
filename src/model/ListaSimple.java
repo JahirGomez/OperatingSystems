@@ -12,22 +12,22 @@ package model;
 public class ListaSimple extends Lista{
 
     @Override
-    public void insertaInicio(Object dato) {
+    public void insertaInicio(String nombre, int r, int quantum) {
         if (vacio()){
-            inicio = ultimo = new Nodo(dato);
+            inicio = ultimo = new Nodo(nombre, r, quantum);
         }
         else{
-            inicio = new Nodo(dato,inicio);
+            inicio = new Nodo(nombre, r, quantum, inicio);
         }
     }
 
     @Override
-    public void insertaFinal(Object dato) {
+    public void insertaFinal(String nombre, int r, int quantum) {
         if (vacio()){
-            inicio = ultimo = new Nodo(dato);
+            inicio = ultimo = new Nodo(nombre, r, quantum);
         }
         else{
-            Nodo temp = new Nodo(dato);
+            Nodo temp = new Nodo(nombre, r, quantum);
             ultimo.setSiguiente(temp);
             ultimo = temp;
         }
@@ -40,11 +40,11 @@ public class ListaSimple extends Lista{
             System.out.println("La lista está vacía");
     else{
         if(inicio==ultimo){
-            eliminado = inicio.getDato();
+            eliminado = inicio.getName();
             inicio = ultimo = null;
         }
         else{
-            eliminado = inicio.getDato();
+            eliminado = inicio.getName();
             inicio = inicio.getSiguiente();
         }
     }
@@ -58,7 +58,7 @@ public class ListaSimple extends Lista{
             System.out.println("La lista está vacía");
     else{
         if(inicio==ultimo){
-            eliminado = ultimo.getDato();
+            eliminado = ultimo.getName();
             inicio = ultimo = null;
         }
         else{
@@ -66,7 +66,7 @@ public class ListaSimple extends Lista{
             while (actual.getSiguiente()!= ultimo){
                 actual = actual.getSiguiente();
             }
-            eliminado = ultimo.getDato();
+            eliminado = ultimo.getName();
             actual.setSiguiente(null);
             ultimo = actual;
         }
@@ -74,18 +74,18 @@ public class ListaSimple extends Lista{
     return eliminado;
     }
     
-    public void insertaOrdenado(int dato){
+    /*public void insertaOrdenado(String nombre, int r, int quantum){
     if (vacio())
-        insertaInicio(dato);
+        insertaInicio(nombre, r, quantum);
     else{
         if (inicio == ultimo)
-            if (dato < (Integer)inicio.getDato())
+            if (dato < (Integer)inicio.getName())
                 insertaInicio(dato);
             else
                 insertaFinal(dato);
         else{
             Nodo antes = null, despues = inicio;
-            while(despues!=null && dato > (Integer)despues.getDato()){
+            while(despues!=null && dato > (Integer)despues.getName()){
                 antes = despues;
                 despues = despues.getSiguiente();
             }
@@ -100,9 +100,9 @@ public class ListaSimple extends Lista{
                 }        
         }
     }                
-    }
+    }*/
     
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         ListaSimple lista = new ListaSimple();
         /*lista.insertaInicio(34);
         lista.insertaInicio("Hola");
@@ -115,12 +115,12 @@ public class ListaSimple extends Lista{
         lista.imprimir();
         System.out.println("\nEliminando el primer elemento de la lista... \n");
         System.out.println(lista.eliminaInicio());
-        lista.imprimir();*/
+        lista.imprimir();*//*
         System.out.println("Inserta en Orden");
         lista.insertaOrdenado(34);
         lista.insertaOrdenado(20);
         lista.insertaOrdenado(50);
         lista.insertaOrdenado(23);
         lista.imprimir();        
-    }
+    }*/
 }

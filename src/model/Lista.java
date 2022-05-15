@@ -14,17 +14,17 @@ public abstract class Lista {
     protected Nodo ultimo;
     protected String nombre;
     
-    public Lista(){
+    public Lista() {
         this("lista");
     }
     
-    public Lista(String nombre){
+    public Lista(String nombre) {
         this.nombre = nombre;
         inicio = ultimo = null;
     }
     
-    public abstract void insertaInicio(Object dato);
-    public abstract void insertaFinal(Object dato);
+    public abstract void insertaInicio(String nombre, int r, int quantum);
+    public abstract void insertaFinal(String nombre, int r, int quantum);
     public abstract Object eliminaInicio();
     public abstract Object eliminaFinal();   
 
@@ -77,7 +77,7 @@ public abstract class Lista {
     public void imprimir(){
     Nodo actual = inicio;
         while (actual!=null){
-            System.out.print(actual.getDato()+ " -> ");
+            System.out.print(actual.getName()+ " -> ");
             actual = actual.getSiguiente();
         }
     }

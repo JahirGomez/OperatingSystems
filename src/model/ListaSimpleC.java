@@ -12,24 +12,24 @@ package model;
 public class ListaSimpleC extends ListaCirc{
 
     @Override
-    public void insertaInicio(Object dato) {
+    public void insertaInicio(String nombre, int r, int quantum) {
         if (vacio()){
-            inicio = ultimo = new Nodo(dato);
+            inicio = ultimo = new Nodo(nombre, r, quantum);
             ultimo.setSiguiente(inicio);
         }
         else{
-            inicio = new Nodo(dato,inicio);
+            inicio = new Nodo(nombre, r, quantum, inicio);
             ultimo.setSiguiente(inicio);
         }}
 
     @Override
-    public void insertaFinal(Object dato) {
+    public void insertaFinal(String nombre, int r, int quantum) {
           if (vacio()){
-            inicio = ultimo = new Nodo(dato);
+            inicio = ultimo = new Nodo(nombre, r, quantum);
             ultimo.setSiguiente(inicio);
         }
         else{
-            Nodo temp = new Nodo(dato);
+            Nodo temp = new Nodo(nombre, r, quantum);
             ultimo.setSiguiente(temp);
             ultimo = temp;
             ultimo.setSiguiente(inicio);
@@ -42,11 +42,11 @@ public class ListaSimpleC extends ListaCirc{
             System.out.println("La lista está vacía");
     else{
         if(inicio==ultimo){
-            eliminado = inicio.getDato();
+            eliminado = inicio.getName();
             inicio = ultimo = null;
         }
         else{
-            eliminado = inicio.getDato();
+            eliminado = inicio.getName();
             inicio = inicio.getSiguiente();
             ultimo.setSiguiente(inicio);
         }
@@ -61,7 +61,7 @@ public class ListaSimpleC extends ListaCirc{
             System.out.println("La lista está vacía");
     else{
         if(inicio==ultimo){
-            eliminado = ultimo.getDato();
+            eliminado = ultimo.getName();
             inicio = ultimo = null;
         }
         else{
@@ -69,7 +69,7 @@ public class ListaSimpleC extends ListaCirc{
             while (actual.getSiguiente()!= ultimo){
                 actual = actual.getSiguiente();
             }
-            eliminado = ultimo.getDato();
+            eliminado = ultimo.getName();
             actual.setSiguiente(inicio);
             ultimo = actual;
         }
@@ -81,7 +81,7 @@ public class ListaSimpleC extends ListaCirc{
     
     }
     
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         ListaSimpleC listac = new ListaSimpleC();
         listac.insertaInicio("Hola");
         listac.insertaInicio(34);
@@ -94,5 +94,5 @@ public class ListaSimpleC extends ListaCirc{
             System.out.println("\nQuitando..."+listac.eliminaInicio());
             listac.imprimir();
         }
-    }
+    }*/
 }
