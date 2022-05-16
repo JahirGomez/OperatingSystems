@@ -4,16 +4,16 @@
  * and open the template in the editor.
  */
 package model;
-
 /**
  *
  * @author Jahir Gómez
  */
 public class Nodo {
     private static int quantum, contadorProcesoFinalizados=0;
-    protected int rafaga, resto;
+    protected int rafaga, resto, pagina, pagdis;
     protected String name, estado="Listo";
     protected Nodo siguiente;
+   
     
     public Nodo(){}
     
