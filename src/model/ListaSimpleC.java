@@ -4,13 +4,13 @@
  * and open the template in the editor.
  */
 package model;
-
+import java.util.Random;
 /**
  *
  * @author Jahir Gómez
  */
 public class ListaSimpleC extends ListaCirc{
-
+public final int min = 1, max = 16;
     @Override
     public void insertaInicio(String nombre, int r, int quantum) {
         if (vacio()){
@@ -87,6 +87,8 @@ public class ListaSimpleC extends ListaCirc{
         if (!vacio()){
             if (inicio == ultimo){
                 if (!actual.getEstado().equals("Finalizado")){
+                    if(this.pagina <= (pagdis = random.nextInt(max + min) + min)){
+        }
                     actual.setEstado("En ejecucion");
                     System.out.println(actual);
                     while(actual.estado.equals("En ejecucion")) {
