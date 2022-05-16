@@ -4,9 +4,7 @@ import model.ListaSimpleC;
 import model.Nodo;
 
 public class NodoTest {
-    
     public static void main(String[] args) {
-
         //Declaración de variables.
         ListaSimpleC listaProcesos = new ListaSimpleC();
         int cantidad, quantum;
@@ -27,14 +25,15 @@ public class NodoTest {
             listaProcesos.insertaFinal(n, rafaga, quantum);
         }
 
-        int aux=0, contadorProcesos=0;
-        while(!listaProcesos.vacio()) {
-            if (aux == 0){
-                System.out.println("Iniciando P" + contadorProcesos);
-                contadorProcesos++;
-            }
-            listaProcesos.imprimir();
-            aux++;
+        listaProcesos.imprimir();
+
+        System.out.println("");
+
+
+
+        while(Nodo.getContadorProcesosFinalizados() < cantidad) {
+            listaProcesos.recorrer();
         }
+        scanner.close();
     }
 }
