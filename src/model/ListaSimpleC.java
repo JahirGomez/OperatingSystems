@@ -120,8 +120,8 @@ public class ListaSimpleC extends ListaCirc{
                     }
                 }
             }else{
-                if (!actual.getEstado().equals("Finalizado")){
-                    do{
+                do{
+                    if (!actual.getEstado().equals("Finalizado")){
                         actual.setEstado("En ejecucion");
                         System.out.println(actual);
                         while(actual.estado.equals("En ejecucion")) {
@@ -129,7 +129,7 @@ public class ListaSimpleC extends ListaCirc{
                                 for (int i=0; i<Nodo.getQuantum(); i++){
                                     actual.setResto(actual.getResto()-1);
                                 }
-    
+                            
                                 if(actual.resto == 0) {
                                     actual.setEstado("Finalizado");
                                     System.out.println(actual);
@@ -147,15 +147,15 @@ public class ListaSimpleC extends ListaCirc{
                                             System.out.println(actual);
                                             break;
                                         }
-    
+                                    
                                     }
                                     Nodo.setContadorProcesoFinalizados();
                                 }
                             }
                         }
-                        actual = actual.getSiguiente();
-                    }while(actual!=inicio);
-                }
+                    }
+                    actual = actual.getSiguiente();
+                }while(actual!=inicio);
             }
         }
     }
